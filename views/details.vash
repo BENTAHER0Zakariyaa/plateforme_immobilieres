@@ -1,0 +1,54 @@
+@html.extend('layouts/main.layout.vash', function(model){
+    @html.block('body', function(model){
+            <section class="lg:mx-16 md:my-16 my-8 mx-4">
+                <div >
+                    <h1 class="text-3xl pl-4 border-l-8 border-black">
+                        @model.articale.title
+                    </h1>
+                    <div class="rounded-xl my-4 flex justify-between text-white bg-black py-2">
+                        <div class="mx-2">
+                            <h3 class="text-lg font-bold">@model.articale.price Dhs</h3>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-2 px-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <div class="text-lg">
+                                    @model.articale.city
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 px-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div class="text-lg">
+                                    @model.articale.createdAt
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-6">
+                    <div class="rounded-xl overflow-hidden">
+                        <img class="w-full object-cover" src="/images/@model.articale.image" alt="" srcset="">
+                    </div>
+                    <div>
+                        <div>
+                            <h2 class="text-2xl">Description : </h2>
+                        </div>
+                        <div class="my-2">
+                            <p class="font-light text-lg">
+                                @model.articale.description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    })
+})
