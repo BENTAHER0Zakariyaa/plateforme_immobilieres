@@ -1,0 +1,18 @@
+{
+  "name": "plateforme_immobilieres",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "watch:css": "npx tailwindcss -o public/tailwindcss/tailwind.css -w"
+  },
+  "repository": "https://github.com/BENTAHER0Zakariyaa/plateforme_immobilieres.git",
+  "author": "BENTAHER Zakariyaa <63283269+BENTAHER0Zakariyaa@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
+    "pug": "^3.0.2",
+    "vash": "^0.13.0"
+  }
+}
