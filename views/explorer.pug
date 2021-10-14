@@ -34,13 +34,13 @@ mixin article(a)
 block container
     section(class='lg:mx-16 md:my-16 my-8 mx-4')
         div(class='text-center')
-            h2(class='text-3xl font-bold underline my-4') Explorer homes on LOGO
+            h2(class='text-3xl font-bold underline my-4') Explorer les maison sur DARI
         div(class='border border-black p-4 rounded-xl')
             button(id='IdShowFilter' class='flex justify-center space-x-2 items-center w-full')
                 div
                     svg(xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor')
                         path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z')
-                div Show filter
+                div Afficher filtre
             div(class='hidden' id='IdFilter')
                 form(class='mx-2 md:p-4 p-2')
                     div(class='flex md:flex-row flex-col md:space-y-0 md:space-x-2 space-y-2 items-center')
@@ -50,18 +50,20 @@ block container
                                 input(value='' id='IdSelectCityInput' placeholder='City' name='city' class='block border border-black rounded-xl w-full px-4 py-2' type='text')
                         div(class='w-full')
                             div(class='flex space-x-2 z-20')
-                                input(value='' placeholder='Min price' name='min' class='border border-black rounded-xl w-full px-4 py-2' type='text')
-                                input(value='' placeholder='Max price' name='max' class='border border-black rounded-xl w-full px-4 py-2' type='text')
+                                input(value='' placeholder='Min prix' name='min' class='border border-black rounded-xl w-full px-4 py-2' type='text')
+                                input(value='' placeholder='Max prix' name='max' class='border border-black rounded-xl w-full px-4 py-2' type='text')
                         div(class='w-full flex items-center space-x-1')
                             div(class='w-full')
                                 select(class='border border-black rounded-xl w-full px-4 py-2')
                                     option(value='') type
-                                    option(value='') villa
-                                    option(value='') dar
+                                    option(value='villa') villa
+                                    option(value='maison') maison 
+                                    option(value='appartement') appartement 
+                                    option(value='studio') studio 
 
 
                         div(class='w-full')
-                            input(id='#IdSendFilter' type='submit' value='Filter' class='w-full text-white rounded-xl border border-black py-2 px-4 bg-black hover:text-black hover:bg-white transition duration-500')
+                            input(id='#IdSendFilter' type='submit' value='Filtrer' class='w-full text-white rounded-xl border border-black py-2 px-4 bg-black hover:text-black hover:bg-white transition duration-500')
 
     section(class='lg:mx-16 md:my-16 my-8 mx-4')
         div(class='my-10')

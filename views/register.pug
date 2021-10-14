@@ -11,24 +11,24 @@ section(class='flex h-screen w-full')
                         a(class='border border-black text-black hover:text-white hover:bg-black rounded-xl p-1' href='/')
                             svg(xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor')
                                 path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z')
-                        div(class='uppercase') Create an account
-                    div(class='font-small') Already have an account? <a class='text-blue-600 hover:text-blue-400 transition duration-200' href='/login'>Log In.</a>
+                        div(class='uppercase') Créer un compte
+                    div(class='font-small') Déja inscrit? <a class='text-blue-600 hover:text-blue-400 transition duration-200' href='/login'>Connectez-vous.</a>
                 div(class='flex flex-col space-y-2')
                     div(class='flex flex-row space-x-2')
                         div(class='flex flex-col')
                             div
                                 label(for='IdFirstName')
-                                    samp(class='block') First name
-                                    input(class='block py-1 px-2 rounded-xl border border-black outline-none' type='text' name='firstname' id='IdFirstName' placeholder='First name')
+                                    samp(class='block') Prénom
+                                    input(class='block py-1 px-2 rounded-xl border border-black outline-none' type='text' name='firstname' id='IdFirstName' placeholder='Prénom')
                         div(class='flex flex-col ')
                             div
                                 label(for='IdLastName')
-                                    samp(class='block') Last name
-                                    input(class='block py-1 px-2 rounded-xl border border-black outline-none' type='text' name='lastname' id='IdLastName' placeholder='Last name')
+                                    samp(class='block') Nom
+                                    input(class='block py-1 px-2 rounded-xl border border-black outline-none' type='text' name='lastname' id='IdLastName' placeholder='Nom')
                     div(class='flex flex-col ')
                         div
                             label(for='IdNumber')
-                                samp(class='block') Number
+                                samp(class='block') Numéro telephone
                                 input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='tel' name='number' id='IdNumber' placeholder='0650000000')
                     div(class='flex flex-col ')
                         div
@@ -38,6 +38,6 @@ section(class='flex h-screen w-full')
                     div(class='flex flex-col ')
                         div
                             label(for='IdPassword')
-                                samp(class='block') Password
-                                input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='password' name='password' id='IdPassword' placeholder='Password')
-                    input(class='p-2 rounded-xl transition border border-black duration-200 bg-black hover:bg-white text-white hover:text-black' type='submit' value='Create Account' id='IdLogin')
+                                samp(class='block') Mot de passe
+                                input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='password' name='password' id='IdPassword' placeholder='Mot de passe')
+                    input(class='p-2 rounded-xl transition border border-black duration-200 bg-black hover:bg-white text-white hover:text-black' type='submit' value='S\'inscrire' id='IdLogin')

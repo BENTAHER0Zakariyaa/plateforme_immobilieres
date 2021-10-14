@@ -45,23 +45,22 @@ block container
                     div(class='absolute mx-8 my-10 grid inset-y-0 items-center text-white')
                         div(class='flex flex-col space-y-4')
                             h1(class='md:text-6xl sm:text-5xl text-4xl')
-                                | To each their <span class='font-bold'>home</span>.
+                                | A chacun sa <span class='font-bold'>maison</span>.
                             h2(class='font-light md:text-xl sm:text-md text-sm mx-2')
-                                p Let’s find a .<span class='font-bold '>home</span> that’s perfect for you😉.
+                                p Cherchons une parfaite <span class='font-bold '>maison</span> pour vous 😉.
                     img(class='h-full w-full object-cover object-right' src='/images/house-2.jpg' alt='hero_image')
     //- SERVICES
     section(class='lg:mx-16 md:my-16 my-8 mx-4 text-center')
         div
-            h2(class='text-3xl font-bold underline') See how LOGO can help
-        div(class='grid place-items-center md:grid-cols-2 grid-cols-1 gap-10 mt-8')
-            +service("Buy a home", "With 35+ filters and custom keyword search, LOGO can help you easily find a home or apartment for rent that you'll love.")
-            +service("service Rent a home", "With over 1 million+ homes for sale available on the website, LOGO can match you with a house you will want to call home.")
+            h2(class='text-3xl font-bold underline') voir comment DARI peut aider
+        div(class='grid place-items-center grid-cols-1 gap-10 mt-8')
+            +service("Acheter une maison", "DARI va vous apporter les meilleurs offres")
 
     //- NEW ARTICLES
     section(class='lg:mx-16 md:my-16 my-8 mx-4')
         div(class='text-center')
-            h2(class='text-3xl font-bold underline') Explore homes on LOGO
-            p(class='md:text-2xl text-xl font-light my-4') Take a deep dive and browse homes for <span class='font-bold'>sale</span> and <span class='font-bold'>rent</span>.
+            h2(class='text-3xl font-bold underline') Explorer les maison de DARI
+            p(class='md:text-2xl text-xl font-light my-4') Vie le moment sur DARI pour trouver la maison du rêve à <span class='font-bold'>acheter</span>.
         div(class='my-10')
 
         //- GRID
@@ -71,10 +70,10 @@ block container
             each a in articles
                 +article(a)
         div(class='text-center my-5')
-            a(href='/explorer?page=1' class=btn_primary) See more...
+            a(href='/explorer?page=1' class=btn_primary) Voir plus...
 
     //- HOOK
     section(class="lg:mx-16 md:my-16 my-8 mx-4")
         div(class="my-16 text-center")
-            h1(class="md:text-4xl sm:text-3xl text-2xl font-bold") discover a place you'll <span class="underline">love</span> to <span class="underline">live</span>
+            h1(class="md:text-4xl sm:text-3xl text-2xl font-bold") Trouver ta maison de <span class="underline">rêve</span> pour <span class="underline">viver</span> la vie
 

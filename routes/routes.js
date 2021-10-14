@@ -65,7 +65,7 @@ const articles = [
 
 // GENERALE ROUTES
 Router.get('/', async(req, res)=>{
-    res.render('index', {title: 'Home', articles: articles.slice(0, 3),session:req.session});
+    res.render('index', {title: 'Accueil', articles: articles.slice(0, 3),session:req.session});
 });
 Router.get('/explorer', async(req, res)=>{
 
@@ -111,7 +111,7 @@ Router.get('/explorer/details/:id', async(req, res)=>{
 Router.get('/post', async (req, res)=>{
     if(req.session.user_id==undefined)
         return res.redirect('/login');
-    return res.render('create_post', {title:'Create post',session:req.session});
+    return res.render('create_post', {title:'Créer un poste',session:req.session});
 });
 Router.post('/post',upload.fields([{name: 'cover',maxCount: 1},{name: 'images'}]), async (req, res)=>{
 
@@ -124,7 +124,7 @@ Router.post('/post',upload.fields([{name: 'cover',maxCount: 1},{name: 'images'}]
         images.forEach(m=>{
             fs.unlinkSync(path+m);
         })
-        return res.render('create_post', {title: 'Create post', error:'All fields required'});
+        return res.render('create_post', {title: 'Créer un poste', error:'Tous les champs sont requis'});
     }
     await Post.create({title,cover,images, description, surface, price, city, type, characteristics});
     res.redirect('/post');
@@ -133,18 +133,18 @@ Router.post('/post',upload.fields([{name: 'cover',maxCount: 1},{name: 'images'}]
 Router.get('/register', async(req, res)=>{
     if(!req.session.user_id==undefined)
         return res.redirect('/');
-    return res.render('register', {title:'register'});
+    return res.render('register', {title:'Inscription'});
 });
 Router.post('/register', async(req, res)=>{
     let {firstname, lastname, number, email, password} = req.body;
     if (!firstname || !lastname || !number || !email || !password )
     {
-        return res.render('register', {title:'register', error:'All fields required'});
+        return res.render('register', {title:'Inscription', error:'Tous les champs sont requis'});
     }
     const user = await User.find({number:number,email:email});
     if(user.length > 0)
     {
-        return res.render('register', {title:'register', error:'Email & Number already existed'});
+        return res.render('register', {title:'Inscription', error:'Email & numéro existes déjà'});
     }
     var salt = bcrypt.genSaltSync(10);
     password = bcrypt.hashSync(password, salt);
@@ -154,22 +154,22 @@ Router.get('/login', async(req, res)=>{
 
     if(req.session.user_id!=undefined)
         console.log(req.session.user_id)
-    return res.render('login', {title:'login'});
+    return res.render('login', {title:'Connexion'});
 });
 Router.post('/login', async(req, res)=>{
     let {email, password} = req.body;
     if (!email || !password)
     {
-        return res.render('login', {title:'login', error:'All fields required'});;
+        return res.render('login', {title:'Connexion', error:'Tous les champs sont requis'});;
     }
     const user = await User.find({email:email});
     if(user.length == 0)
     {
-        return res.render('login', {title:'login', error:'Not exist'});
+        return res.render('login', {title:'Connexion', error:'Compte n\'existe pas'});
     }
     if(!bcrypt.compareSync(password,user[0].password))
     {
-        return res.render('login', {title:'login', error:'Not exist'});
+        return res.render('login', {title:'Connexion', error:'Compte n\'existe pas'});
     }
     req.session.user_id = await user[0]._id;
     req.session.user_role = await user[0].role;
