@@ -1,0 +1,62 @@
+extends layouts/main.layout.pug
+
+mixin Images(images)
+    each i in images
+        a(class='rounded-xl w-full ' href='/images/'+i data-lightbox='art-images' data-title='')
+            img(class='w-full rounded-xl object-cover' src='/images/'+i)
+
+mixin Composites(composites)
+    ul(class='text-center w-full justify-center flex flex-row lg:block flex-wrap')
+        each c in composites
+            li(class='text-lg py-1 my-2 rounded-xl px-2 bg-black text-white  m-1')= c
+
+block container
+    section(class='lg:mx-16 md:my-16 my-4 mx-4')
+        div
+            h1(class='text-3xl flex items-center space-x-2') <span> #{article.title} </span> <span class=' text-[15px] font-light text-white bg-black px-2 rounded-lg'>#{article.type}</span>
+
+            div(class='w-full rounded-xl px-4 py-2 my-4 flex justify-between text-white bg-black')
+                div(class='mx-2')
+                    h3(class='text-md font-bold') 1,#{article.price} Dh
+                div(class='flex items-center space-x-2')
+                    div(class='flex items-center space-x-2 px-2')
+                        div
+                            svg(xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z')
+                                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 11a3 3 0 11-6 0 3 3 0 016 0z')
+                        div(class='text-md')= article.city
+                    div(class='flex items-center space-x-2 px-2')
+                        div
+                            svg(xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z')
+                        div(class='text-md')= article.createdAt
+        div(class='flex flex-col space-y-6')
+            div(class='flex flex-col lg:flex-row md:space-y-0 md:space-x-4 space-y-4')
+                div(class='flex w-full')
+                    div(class='w-full rounded-xl overflow-hidden ')
+                        a(class='w-full' href='/images/'+article.cover data-lightbox='art-images' data-title='')
+                            img(class='w-full h-[315px] sm:h-[400px] lg:h-[450px] object-cover' src='/images/'+article.cover)
+                    div(class='overflow-y-auto md:w-64 w-32 h-[315px] sm:h-[400px] lg:h-[450px] flex flex-col space-y-2 px-2')
+                        +Images(article.images)
+                div
+                    h2(class='text-2xl md:block') Composites
+                    div(class='lg:w-[200px] overflow-y-auto h-full lg:h-[450px] ')
+                        +Composites(article.composites)
+            div
+                div
+                    h2(class='text-2xl') Description
+                div(class='my-2')
+                    p(class='font-light text-lg px-4 py-2 text-justify')= article.description
+        div(class='flex justify-between items-center my-4')
+            div(class='flex items-center space-x-2 text-white bg-black rounded-xl p-2')
+                a(href='' id='IdPhoneIcon')
+                    svg(xmlns='http://www.w3.org/2000/svg' class='h-7 w-7' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                      path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z')
+                div(id='IdPhone' class='text-center')
+                    h3(class='text-xl font-bold')= article.client.phone
+            div(class='flex items-center text-white bg-black rounded-xl p-2')
+                div(id='IdEmail')
+                    h3(class='text-xl font-bold mx-1')= article.client.email
+                a(href='' id='IdEmailIcon')
+                    svg(xmlns='http://www.w3.org/2000/svg' class='h-7 w-7' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                      path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207')

@@ -7,6 +7,7 @@ html
         meta(http-equiv='X-UA-Compatible' content='IE=edge')
         title=title
         link(rel='stylesheet' href='/tailwindcss/tailwind.css')
+        link(rel='stylesheet' href='/lightbox2/dist/css/lightbox.min.css')
 body
     //- NAVBAR
     nav(class='md:flex md:flex-row justify-between items-center px-10 py-2')
@@ -26,8 +27,16 @@ body
                         a(href='/explorer?page=1' class=(title=="Explorer"?'font-bold':'hover:underline')) Explorer
             div(class='my-6')
                 ul(class='flex justify-center items-center space-x-2')
-                    li
-                        a(href='/' class=btn_primary) Login
+                    if session.user_id
+                        li
+                            a(href='/logout' class=btn_primary) Logout
+                    else
+                        li
+                            a(href='/login' class=btn_primary) Login
+
+                    if session.user_id
+                        li
+                            a(href='/dashboard' class=btn_primary) Dashboard
         //- PC NAVBAR
         div(class='hidden md:flex flex-row items-center space-x-8')
             ul(class='flex space-x-2')
@@ -36,8 +45,16 @@ body
                  li
                     a(href='/explorer?page=1' class=(title=="Explorer"?'font-bold':'hover:underline')) Explorer
             ul(class='flex justify-center items-center space-x-2')
-                li
-                    a(href='/' class=btn_primary) Login
+                if session.user_id
+                    li
+                        a(href='/logout' class=btn_primary) Logout
+                else
+                    li
+                        a(href='/login' class=btn_primary) Login
+
+                if session.user_id
+                    li
+                        a(href='/dashboard' class=btn_primary) Dashboard
     //- CONTAINER
     block container
 
@@ -52,11 +69,13 @@ body
              a(href='' class='hover:underline')
                 li Instagram
              a(href='' class='hover:underline')
-                li Twitter
+                li Twitter #{session.user_id}
+
     //- HIDDEN TOOLS
     button(id='IdHiddenButton' class='hidden z-10 fixed left-0 top-0 right-0 bottom-0 w-full h-full')
     //- JQUERY
     script(src='/jquery/jquery.js')
+    script(src='/lightbox2/dist/js/lightbox.js')
     //- SCRIPT
     block script
-    script(src='/js/app.js')
+        script(src='/js/app.js')

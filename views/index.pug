@@ -23,17 +23,15 @@ mixin article(a)
                         svg(xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor')
                             path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z')
                     div= a.createdAt
-            img(class='sm:h-40 h-64 w-full object-cover' src=('/images/'+a.image) alt='')
+            img(class='sm:h-40 h-64 w-full object-cover' src=('/images/'+a.cover) alt='')
         div(class='flex justify-between items-center px-2')
             div(class='p-2')
-                b(class='text-green-500')= a.price
-                | Dhs
+                b(class='text-green-500') ${a.price} Dhs
                 div(class='text-white flex items-center space-x-1')
                     div
                         svg(xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor')
                             path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4')
-                    em= a.surface
-                    | m²
+                    em #{a.surface} m²
             a(href=('/explorer/details/'+a.id) class='text-white mx-2 p-2 transition duration-500 hover:text-black hover:bg-white rounded-full')
                 svg(xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor')
                     path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z')

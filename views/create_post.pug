@@ -1,0 +1,70 @@
+extends layouts/main.layout.pug
+
+block container
+    div(class='my-10 mx-20')
+        div(class='bg-white border border-black rounded-xl p-8')
+            form(action='/post' method='post' enctype='multipart/form-data')
+                div(class='flex flex-col space-y-2')
+                    if error
+                        div(class='full py-2 bg-red-400 rounded-xl text-center')
+                            samp(class='text-white') #{error}
+                    samp(class='block') Cover
+                    div
+                        label(for='IdCover' class='h-32 bg-w group flex flex-col rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300')
+                            dev(class='flex h-full w-full object-cover')
+                                div(class='m-auto group-hover:text-gray-300')
+                                    svg(xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                                        path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12')
+                            input(hidden type='file' id='IdCover' name='cover' accept='image/png, image/gif, image/jpeg')
+                    div(class='flex flex-col text-black')
+                        div
+                            label(for='IdTitle')
+                                samp(class='block') Title
+                                input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='title' id='IdTitle' placeholder='Title')
+                    div(class='flex flex-col')
+                        div
+                            label(for='IdDescription')
+                                samp(class='block') Description
+                                textarea(rows='5' class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='description' id='IdDescription' placeholder='Description...')
+                    div(class='flex flex-row space-x-2')
+                        div(class='w-full')
+                            label(for='IdSurface')
+                                samp(class='block') Surface
+                                input(required class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='surface' id='IdSurface' placeholder='Surface m²')
+
+                        div(class='w-full')
+                            label(for='IdPrice')
+                                samp(class='block') Price
+                                input(required class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='price' id='IdPrice' placeholder='price (DHs)')
+                    div(class='flex flex-row space-x-2')
+                        div(class='w-full')
+                            label(for='IdCity')
+                                samp(class='block') City
+                                div(class='w-full')
+                                    div(class='relative z-20')
+                                        div(id='IdSelectCityContainer' class='hidden bottom-12 absolute overflow-auto mt-4 border border-black rounded-xl bg-white max-h-40 w-full z-20')
+                                        input(value='' id='IdSelectCityInput' placeholder='City' name='city' class='block border border-black rounded-xl w-full px-2 py-1' type='text')
+                        div(class='w-full')
+                            label(for='IdType')
+                                samp(class='block') Type
+                                select(required name='type' id='IdType' class='py-1 px-2 rounded-xl border border-black w-full outline-none')
+                                    option(value='') Select type
+                                    option(value='1') dar
+                    div(class='w-full')
+                        label(for='IdType')
+                                samp(class='block') Characteristics
+                                div(id='IdCharacteristicPlace' class='flex flex-col space-y-2')
+                                    div(class='parent flex flex-row space-x-2')
+                                        input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='characteristics[]' placeholder='Characteristic')
+                                        button(class='remove py-1 px-2 rounded-xl transition duration-100 bg-red-600 hover:bg-red-400 text-white') REMOVE
+                    button(class='py-1 px-2 rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300' type='button' id='IdAddCharacteristic') New Characteristic
+                    div(class='grid grid-cols-6 gap-10' id='IdImagesGrid')
+                        label(for='IdUploader' class='h-32 bg-w group flex flex-col rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300')
+                            dev(class='flex h-full w-full object-cover')
+                                div(class='m-auto group-hover:text-gray-300')
+                                    svg(xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                                        path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12')
+                            input(hidden type='file' id='IdUploader' name='images' accept='image/png, image/gif, image/jpeg' multiple)
+                    input(class='py-1 px-2 rounded-xl transition duration-200 bg-black border border-black hover:bg-white hover:text-black text-white' type='submit' value='CREATE' id='IdCreate')
+block script
+    script(src='/js/create_post.js')

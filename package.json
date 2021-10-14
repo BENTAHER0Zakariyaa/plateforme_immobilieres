@@ -10,9 +10,14 @@
   "author": "BENTAHER Zakariyaa <63283269+BENTAHER0Zakariyaa@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jquery-input-mask-phone-number": "^1.0.15",
+    "lightbox2": "^2.11.3",
+    "mongoose": "^6.0.10",
+    "multer": "^1.4.3",
     "nodemon": "^2.0.13",
-    "pug": "^3.0.2",
-    "vash": "^0.13.0"
+    "pug": "^3.0.2"
   }
 }
