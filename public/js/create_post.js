@@ -78,3 +78,11 @@ $('#IdShowFilter').click(function (e) {
     $('#IdFilter').slideToggle();
 
 });
+
+$('#IdSurface,#IdPrice').mask('Z#', {
+    translation: {
+        'Z': {
+            pattern: /[1-9]/
+        }
+    }
+});
