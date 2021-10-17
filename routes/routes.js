@@ -147,7 +147,7 @@ Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'
     const {title, description, surface, price, city, type, characteristics} = req.body;
     const images = req.files.images.map((item)=>item.filename);
     const cover = req.files.cover[0].filename;
-    const client = req.session.user_id;
+    const User = req.session.user_id;
     if (!title || !cover || !images || !description || !surface || !price || !city || !type || !characteristics) {
         const path = `${__dirname}/../public/uploads/`;
         fs.unlinkSync(path+cover);
@@ -156,7 +156,7 @@ Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'
         })
         return res.render('create_post', {title: 'Créer un poste', error:'Tous les champs sont requis'});
     }
-    await Post.create({client,title,cover,images, description, surface, price, city, type, characteristics});
+    await Post.create({User,title,cover,images, description, surface, price, city, type, characteristics});
     res.redirect('/post');
 });
 //AUTH ROUTES
