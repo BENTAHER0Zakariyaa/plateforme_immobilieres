@@ -871,6 +871,11 @@ jquery-input-mask-phone-number@^1.0.15:
   resolved "https://registry.yarnpkg.com/jquery-input-mask-phone-number/-/jquery-input-mask-phone-number-1.0.15.tgz#e497c1b0e89c4709e479fcc047b663efd916ac8d"
   integrity sha512-voUUhT1fZGnzfJhGGXaChISCywA+nBgvPthSjIfkaREE5DxHd24i0sFqNZUafO8E+52Zflj2GO7J2H4zm96xiA==
 
+jquery-mask-plugin@^1.14.16:
+  version "1.14.16"
+  resolved "https://registry.yarnpkg.com/jquery-mask-plugin/-/jquery-mask-plugin-1.14.16.tgz#9ebb55947d984da5aade45315b2fe6b113e28aae"
+  integrity sha512-reywdHlYEkPbzWjTpcc1fk9XQ3PLvO5dzEAVqy8zI7NTF22tB1HbeU3iboZTLdkBEPaWAqeI2HtEjsGQ4roZKw==
+
 js-stringify@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/js-stringify/-/js-stringify-1.0.2.tgz#1736fddfd9724f28a3682adc6230ae7e4e9679db"

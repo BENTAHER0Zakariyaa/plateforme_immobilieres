@@ -62,7 +62,7 @@ block container
                                         input(class='block py-1 px-2 rounded-xl border border-black w-full outline-none' type='text' name='characteristics[]' placeholder='Caractéristique')
                                         button(class='remove py-1 px-2 rounded-xl transition duration-100 bg-red-600 hover:bg-red-400 text-white') Supprimer
                     button(class='py-1 px-2 rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300' type='button' id='IdAddCharacteristic') Ajouter Caractéristique
-                    div(class='grid grid-cols-6 gap-10' id='IdImagesGrid')
+                    div(class='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10' id='IdImagesGrid')
                         label(for='IdUploader' class='h-32 bg-w group flex flex-col rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300')
                             dev(class='flex h-full w-full object-cover')
                                 div(class='m-auto group-hover:text-gray-300')
@@ -70,5 +70,5 @@ block container
                                         path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12')
                             input(hidden type='file' id='IdUploader' name='images' accept='image/png, image/gif, image/jpeg' multiple)
                     input(class='py-1 px-2 rounded-xl transition duration-200 bg-black border border-black hover:bg-white hover:text-black text-white' type='submit' value='Créer le poste' id='IdCreate')
-block script
+block append script
     script(src='/js/create_post.js')

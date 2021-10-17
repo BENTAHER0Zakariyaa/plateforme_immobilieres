@@ -55,3 +55,4 @@ $('#IdShowFilter').click(function (e) {
 });
 
 $('#IdNavbarButton').on('click',()=>$('#IdNavbar').slideToggle());
+

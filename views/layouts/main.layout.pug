@@ -41,7 +41,7 @@ body
         div(class='hidden md:flex flex-row items-center space-x-8')
             ul(class='flex space-x-2')
                  li
-                    a(href='/' class=(title=="Home"?'font-bold':'hover:underline')) Accueil
+                    a(href='/' class=(title=="Accueil"?'font-bold':'hover:underline')) Accueil
                  li
                     a(href='/explorer?page=1' class=(title=="Explorer"?'font-bold':'hover:underline')) Explorer
             ul(class='flex justify-center items-center space-x-2')
@@ -69,13 +69,14 @@ body
              a(href='' class='hover:underline')
                 li Instagram
              a(href='' class='hover:underline')
-                li Twitter #{session.user_id}
+                li Twitter
 
     //- HIDDEN TOOLS
     button(id='IdHiddenButton' class='hidden z-10 fixed left-0 top-0 right-0 bottom-0 w-full h-full')
     //- JQUERY
     script(src='/jquery/jquery.js')
     script(src='/lightbox2/dist/js/lightbox.js')
+    script(src='/jquery-mask-plugin/dist/jquery.mask.js')
     //- SCRIPT
-    block script
-        script(src='/js/app.js')
+block script
+    script(src='/js/app.js')

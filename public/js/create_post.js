@@ -1,6 +1,6 @@
 const characterstic_Clone = `<div class="parent flex flex-row space-x-2">
                                     <input class="block py-1 px-2 rounded-xl border border-black w-full outline-none" type="text" name="characteristics[]" placeholder="Characteristic">
-                                    <button class="remove py-1 px-2 rounded-xl transition duration-100 bg-red-600 hover:bg-red-400 text-white">REMOVE</button>
+                                    <button class="remove py-1 px-2 rounded-xl transition duration-100 bg-red-600 hover:bg-red-400 text-white">Supprimer</button>
                                 </div>`;
 
 $("#IdAddCharacteristic").click((e)=>{
