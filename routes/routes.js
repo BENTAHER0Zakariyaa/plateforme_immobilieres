@@ -142,6 +142,16 @@ Router.get('/post', async (req, res)=>{
         return res.redirect('/login');
     return res.render('create_post', {title:'Créer un poste',session:req.session});
 });
+Router.get('/post/:id/delete', async (req, res)=>{
+    if(req.session.user_id==undefined)
+        return res.redirect('/login');
+    const post = await Post.findByIdAndDelete(req.params.id);
+    fs.unlinkSync(`./public/uploads/${post.cover}`)
+    post.images.map(i=>{
+        fs.unlinkSync(`./public/uploads/${i}`);
+    })
+    return res.redirect('/dashboard');
+});
 Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'}]), async (req, res)=>{
 
     const {title, description, surface, price, city, type, characteristics} = req.body;
@@ -157,7 +167,7 @@ Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'
         return res.render('create_post', {title: 'Créer un poste', error:'Tous les champs sont requis'});
     }
     await Post.create({User,title,cover,images, description, surface, price, city, type, characteristics});
-    res.redirect('/post');
+    res.redirect('dashboard');
 });
 //AUTH ROUTES
 Router.get('/register', async(req, res)=>{
