@@ -34,7 +34,7 @@ mixin article(a)
 block container
     section(class='lg:mx-16 md:my-16 my-8 mx-4')
         div(class='text-center')
-            h2(class='text-3xl font-bold underline my-4') Explorer les maison sur DARI
+            h2(class='text-3xl font-bold underline my-4') Explorer les maisons sur DARI
         div(class='border border-black p-4 rounded-xl')
             button(id='IdShowFilter' class='flex justify-center space-x-2 items-center w-full')
                 div
@@ -72,9 +72,9 @@ block container
                     div no data
             div(class='mt-8 text-white my-5 flex items-center w-full space-x-10 text-center ')
                 if previous != 0
-                    a(href='/explorer?page='+previous+''+params class='w-full text-xl font-bold rounded-xl border border-black py-4 px-4 bg-black hover:text-black hover:bg-white transition duration-500') Previous
+                    a(href='/explorer?page='+previous+''+params class='w-full text-xl font-bold rounded-xl border border-black py-4 px-4 bg-black hover:text-black hover:bg-white transition duration-500') Précedent
                 if next != currentPage
-                    a(href='/explorer?page='+next+''+params class='w-full text-xl font-bold rounded-xl border border-black py-4 px-4 bg-black hover:text-black hover:bg-white transition duration-500') Next
+                    a(href='/explorer?page='+next+''+params class='w-full text-xl font-bold rounded-xl border border-black py-4 px-4 bg-black hover:text-black hover:bg-white transition duration-500') Suivant
 block append script
     script(src='js/explorer.js')
     script.
