@@ -12,7 +12,9 @@ body
     //- NAVBAR
     nav(class='md:flex md:flex-row justify-between items-center px-10 py-2')
         div(class='flex items-center justify-between')
-            div(class='text-3xl') LOGO
+            div
+                a(href='/')
+                    img(src='/images/LOGO.png' class='h-8')
             div(class='md:hidden')
                 button(id='IdNavbarButton')
                     svg(class='h-8 w-8' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
@@ -58,8 +60,8 @@ body
 
     //- FOOTER
     footer(class='flex justify-between items-center p-4 bg-black text-white')
-     div
-         em &copy; LOGO 2021
+     img(src='/images/LOGO-white.png' class='h-8')
+     div &copy; DARI 2021
      div
          ul(class='flex space-x-3 items-center')
              a(href='' class='hover:underline')

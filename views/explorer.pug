@@ -68,8 +68,8 @@ block container
                 if articles != null
                     each a in articles
                         +article(a)
-                else
-                    div no data
+            if articles == null
+                div(class='p-8 w-full text-2xl font-bold bg-black rounded-xl text-white text-center') aucun article trouvé
             div(class='mt-8 text-white my-5 flex items-center w-full space-x-10 text-center ')
                 if previous != 0
                     a(href='/explorer?page='+previous+''+params class='w-full text-xl font-bold rounded-xl border border-black py-4 px-4 bg-black hover:text-black hover:bg-white transition duration-500') Précedent

@@ -9,7 +9,9 @@ block container
                         div(class='full py-2 bg-red-400 rounded-xl text-center')
                             samp(class='text-white') #{error}
                     samp(class='block') Coverture
-                    div
+                    div(class='grid grid-cols-2 gap-10')
+                        div(id='IdCoverContainer')
+
                         label(for='IdCover' class='h-32 bg-w group flex flex-col rounded-xl transition duration-200 border-2 border-dashed border-gray-400 hover:border-gray-300')
                             dev(class='flex h-full w-full object-cover')
                                 div(class='m-auto group-hover:text-gray-300')

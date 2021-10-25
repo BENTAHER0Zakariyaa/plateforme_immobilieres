@@ -18,55 +18,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-// const articles = [
-//     {
-//         id:1,
-//         cover: 'house-2.jpg' ,
-//         title:'Al Kawtar Residence',
-//         city:'El Mansouria',
-//         createdAt:'12/02/2020',
-//         price:"620,000",
-//         description:'Along the ocean on the coastal road Mohammedia-Bouznika, the seaside village AL KAWTAR offers on more than 10 hectares, a picturesque setting to magnificent villas and apartments. ',
-//         surface:72,
-//         images:
-//             [
-//                 'house-1.jpg',
-//                 'house-2.jpg',
-//                 'house-3.png'
-//             ],
-//         composites:
-//             [
-//                 '4 chambres',
-//                 'Climatisation',
-//                 'Vue mer',
-//                 'Villa neuve',
-//                 'DPE Vierge',
-//                 'VBE210046','4 chambres',
-//                 'Climatisation',
-//                 'Vue mer',
-//                 'Villa neuve',
-//                 'DPE Vierge',
-//                 'VBE210046',
-//             ],
-//         type:'villa',
-//         client :
-//             {
-//                 id:1,
-//                 phone:'0658884719',
-//                 email:'aaaaaa@gmail.com'
-//             }
-//     },
-//     {id:2,title:'Sunshade Systems', city:'Khemisset', createdAt:'15/10/2020', price:19000.00, surface:10, image:'house-2.jpg'},
-//     {id:3,title:'Modular House on the Slope / BIO-architects', city:'Fes', createdAt:'21/07/2017', price:1000000.00, surface:600, image:'house-3.png'},
-//     {id:4,title:'Thermowood Battens', city:'Fes', createdAt:'21/07/2017', price:1000000.00, surface:600, image:'house-3.png'},
-// ]
-
-
 // GENERALE ROUTES
 Router.get('/', async(req, res)=>{
-    const articles = await Post.find({}, {}, { sort: { 'created_at' : -1 }}).limit(3);
-    res.render('index', {title: 'Accueil', articles: articles,session:req.session});
+    const articles = await Post.find({}, {}, { sort: { 'created_at' : 1 }}).limit(3);
+    res.render('index', {title: 'Accueil', articles: articles, session:req.session});
 });
+
 Router.get('/explorer', async(req, res)=>{
 
     let where = {};
@@ -98,8 +55,9 @@ Router.get('/explorer', async(req, res)=>{
             const currentPage = req.query.page;
             const previous = currentPage > 1 ? currentPage-1 : 0 ;
             const next = currentPage >= pagesCount ? pagesCount :  parseInt(currentPage) + 1 ;
+
             const articles   = await Post.find(where).skip((currentPage-1)*9).limit(9);
-            console.log(articles)
+
             res.render('explorer', {title : 'Explorer',params: params, currentPage:currentPage,previous:previous,next:next,articles:articles,session:req.session});
         }
     }
@@ -108,29 +66,30 @@ Router.get('/explorer', async(req, res)=>{
 
 
 });
+
 Router.get('/explorer/details/:id', async(req, res)=>{
     let page_data = {}
-
-    const article = await Post.findById(req.params.id).populate('User');
-    console.log(article);
-
-    if(!article)
+    let article;
+    try{
+        article = await Post.findById(req.params.id).populate('User');
+    }catch (e)
     {
-        page_data.title ='Not Found'
         return res.status(404).json('Not Found');
     }
+
 
     page_data.title = article.title;
     page_data.article = article;
     page_data.session = req.session;
 
-
     return res.render('details', page_data);
-   
 });
+
 Router.get('/dashboard', async (req, res)=>{
+
     if(req.session.user_id==undefined)
         return res.redirect('/login');
+
     const id = req.session.user_id;
     const articles = await Post.find({User:id});
 
@@ -146,12 +105,21 @@ Router.get('/post/:id/delete', async (req, res)=>{
     if(req.session.user_id==undefined)
         return res.redirect('/login');
     const post = await Post.findByIdAndDelete(req.params.id);
-    fs.unlinkSync(`./public/uploads/${post.cover}`)
+    fs.unlinkSync(`./public/uploads/${post.cover}`);
     post.images.map(i=>{
         fs.unlinkSync(`./public/uploads/${i}`);
-    })
+    });
     return res.redirect('/dashboard');
 });
+
+//
+Router.get('/post/:id/update', async (req, res)=>{
+    if(req.session.user_id==undefined)
+        return res.redirect('/login');
+    return res.render('update_post', {title:'Modifier un poste',session:req.session});
+});
+
+
 Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'}]), async (req, res)=>{
 
     const {title, description, surface, price, city, type, characteristics} = req.body;
@@ -169,9 +137,10 @@ Router.post('/post',upload.fields([{name: 'cover', maxCount: 1}, {name: 'images'
     await Post.create({User,title,cover,images, description, surface, price, city, type, characteristics});
     res.redirect('dashboard');
 });
+
 //AUTH ROUTES
 Router.get('/register', async(req, res)=>{
-    if(!req.session.user_id==undefined)
+    if(req.session.user_id != undefined)
         return res.redirect('/');
     return res.render('register', {title:'Inscription'});
 });
@@ -184,17 +153,17 @@ Router.post('/register', async(req, res)=>{
     const user = await User.find({number:number, email:email});
     if(user.length > 0)
     {
-        return res.render('register', {title:'Inscription', error:'Email & numéro existes déjà'});
+        return res.render('register', {title:'Inscription', error:'Email ou numéro existes déjà'});
     }
     var salt = bcrypt.genSaltSync(10);
     password = bcrypt.hashSync(password, salt);
     await User.create({firstname, lastname, number, email, password});
-    return res.redirect('/');
+    return res.redirect('/login');
 });
 Router.get('/login', async(req, res)=>{
 
-    if(req.session.user_id!=undefined)
-        console.log(req.session.user_id)
+    if(req.session.user_id != undefined)
+        return res.redirect('/');
     return res.render('login', {title:'Connexion'});
 });
 Router.post('/login', async(req, res)=>{
@@ -221,7 +190,5 @@ Router.get('/logout', async(req, res)=>{
         return res.redirect('/');
     });
 });
-
-
 
 module.exports = Router;

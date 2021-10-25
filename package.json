@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "watch:css": "npx tailwindcss -o public/tailwindcss/tailwind.css -w"
+    "watch:css": "npx tailwindcss -o public/tailwindcss/tailwind.css -w",
+    "build:css": "npx tailwindcss -o public/tailwindcss/tailwind.css --minify"
   },
   "repository": "https://github.com/BENTAHER0Zakariyaa/plateforme_immobilieres.git",
   "author": "BENTAHER Zakariyaa <63283269+BENTAHER0Zakariyaa@users.noreply.github.com>",
